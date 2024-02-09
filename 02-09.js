@@ -35,15 +35,56 @@ while (true) console.log(i3-=5);
 // 4. Print integers between 0 and 20 with the following conditions:
 //  - All numbers divisible by 2 should be multiplied by 3 before they are output.
 //  - All other integers should not be output.
-let i4;
-const const4from = 0;
-const const4to = 20;
-i4 = const4from;
-if ((i4 & 1) != 0) i4++;
-while ((i4+=2) < const4to) console.log(/* ${i4} gives us */ `${i4*3}`);
+let i4 = 0;
+// if ((i4 & 1) != 0) i4++;
+while ((i4+=2) < 20) console.log(/* ${i4} gives us */ `${i4*3}`);
 
 // 5. Print all prime numbers between 0 and 20.
-
+// 5a. Print all prime numbers between `start` and `end`.
+let i5;
+let start = 0;
+let end = 20;
+let primes = [];
+// let's go in ascending order
+if (end < start) end = [start, start = end][0];  // reverse start and end if necessary
+// By definition, prime numbers must be positive integers.
+if (start < 1) {
+    start = 1;  // make sure it's positive
+} else {
+    start = Math.ceil(start);  // go to the next integer
+};
+if (end < 1) {
+    end = 1;  // make sure it's positive
+} else {
+    end = Math.floor(end);  // take the highest integer represented
+};
+i5 = start;
+while (i5 < end) {
+    // base cases
+    if (i5 == 1) console.log(i5++);
+    else if (i5 == 2) {
+        primes = [2];
+        console.log(i5++);
+    } else {
+        let possiblyPrime = true;
+        for (let previousPrime of primes) {
+            if (previousPrime ** 2 > i5) {
+                // the greatest factor a number can have is its square root
+                break;
+            };
+            if (i5 % previousPrime == 0) {
+                possiblyPrime = false;
+                break;
+            };
+        };
+        if (possiblyPrime) {
+            primes.push(i5);
+            console.log(i5);
+        };
+        i5 += 2;
+    };
+};
+primes = [1].concat(primes);
 
 /* 
 Bonus Logical Question
@@ -51,3 +92,20 @@ Romeo went to the vending machine to buy himself a cookie, which costs $4. He pa
 
 Write a loop that outputs how many quarters Romeo received.
  */
+
+const cashTendered = 10.0;
+const stupidlyExpensiveCookiePrice = 4.0;
+const quartersPerDollar = 4;
+
+let changeOwed = cashTendered - stupidlyExpensiveCookiePrice;
+let quartersOwed = (Math.round(cashTendered - stupidlyExpensiveCookiePrice) * quartersPerDollar);
+// change the machine owes that is not dispensable in quarters...it keeps. tough luck, Romeo.
+quartersOwed = Math.floor(quartersOwed)
+
+let quartersDispensed = 0;
+while (quartersOwed > 0) {
+    quartersDispensed++;
+    console.log(`clink.`);
+    quartersOwed--;
+};
+console.log(`${quartersDispensed} quarters dispensed.`);
