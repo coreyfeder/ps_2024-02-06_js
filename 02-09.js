@@ -40,7 +40,7 @@ const const4from = 0;
 const const4to = 20;
 i4 = const4from;
 if ((i4 & 1) != 0) i4++;
-while ((i4+=2) < const4to) console.log(`${i4} gives us ${i4*3}`);
+while ((i4+=2) < const4to) console.log(/* ${i4} gives us */ `${i4*3}`);
 
 // 5. Print all prime numbers between 0 and 20.
 
