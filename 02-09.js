@@ -118,3 +118,4 @@ while (quartersOwed > 0) {
     quartersOwed--;
 };
 console.log(`${quartersDispensed} quarters dispensed.`);
+// Hopefully it will say "24"
